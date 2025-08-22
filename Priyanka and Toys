@@ -1,0 +1,44 @@
+#include <assert.h>
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* readline();
+char* ltrim(char*);
+char* rtrim(char*);
+char** split_string(char*);
+
+int parse_int(char*);
+
+/*
+ * Complete the 'toys' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY w as parameter.
+ */
+int compare(const void* a, const void* b){
+    return(*(int*)a - *(int*)b);
+}
+int toys(int w_count, int* w) {
+    qsort(w, w_count, sizeof(int), compare);
+    
+    int count=0;
+    int i=0;
+    
+    while (i < w_count) {
+        count++; // new purchase
+        int limit = w[i] + 4;
+        while (i < w_count && w[i] <= limit)
+        {
+            i++;
+        }
+    }
+        return count;
+    }
+
