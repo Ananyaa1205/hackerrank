@@ -1,0 +1,21 @@
+from collections import defaultdict
+
+def count_divisible_subarrays(arr, k):
+    freq = defaultdict(int)
+    freq[0] = 1  # Empty prefix sum
+    prefix_sum = 0
+    count = 0
+    
+    for num in arr:
+        prefix_sum = (prefix_sum + num) % k
+        count += freq[prefix_sum]
+        freq[prefix_sum] += 1
+    
+    return count
+
+# Main driver
+T = int(input().strip())
+for _ in range(T):
+    n, k = map(int, input().split())
+    arr = list(map(int, input().split()))
+    print(count_divisible_subarrays(arr, k))
